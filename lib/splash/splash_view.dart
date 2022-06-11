@@ -22,8 +22,8 @@ class _SplashViewState extends State<SplashView>
   late Animation<double> animation;
 
   startTime() async {
-    var _duration = const Duration(seconds: 8);
-    return Timer(_duration, navigationPage);
+    var duration = const Duration(seconds: 8);
+    return Timer(duration, navigationPage);
   }
 
   void navigationPage() {
@@ -85,7 +85,7 @@ class _SplashViewState extends State<SplashView>
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Image.asset(
-                'assets/images/logosava.gif',
+                'assets/images/logoessava.gif',
                 width: animation.value * 250,
                 height: animation.value * 250,
               ),

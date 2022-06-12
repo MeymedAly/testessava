@@ -22,12 +22,12 @@ class _SplashViewState extends State<SplashView>
   late Animation<double> animation;
 
   startTime() async {
-    var duration = const Duration(seconds: 8);
+    var duration = const Duration(seconds: 5);
     return Timer(duration, navigationPage);
   }
 
   void navigationPage() {
-    Get.to(() => const HomeView());
+    Get.offAll(() => const HomeView());
   }
 
   @override

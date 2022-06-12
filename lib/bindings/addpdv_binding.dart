@@ -4,6 +4,6 @@ import 'package:testessava/controllers/addpdv_controller.dart';
 class AddPdvBinding implements Bindings {
   @override
   void dependencies() {
-    Get.put(AddPdvController());
+    Get.put<AddPdvController>(AddPdvController());
   }
 }

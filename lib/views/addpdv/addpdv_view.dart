@@ -1,11 +1,12 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class AddPdvView extends StatelessWidget {
+import '../../controllers/addpdv_controller.dart';
+
+class AddPdvView extends GetView<AddPdvController> {
   const AddPdvView({Key? key}) : super(key: key);
-  final double latitude = 18.2677888;
-  final double longitude = 17.2677888;
+  // final double latitude = 18.2677888;
+  // final double longitude = 17.2677888;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,11 +29,20 @@ class AddPdvView extends StatelessWidget {
               const SizedBox(
                 height: 40,
               ),
-              Text('latitude : $latitude'),
+              // Obx(
+              //   () => Text(
+              //     'sidi',
+              //     //controller.latitude.value,
+              //     style: const TextStyle(
+              //       color: Colors.white,
+              //       fontSize: 25,
+              //     ),
+              //   ),
+              // ),
               const SizedBox(
                 height: 40,
               ),
-              Text("longitude : $longitude"),
+              Text("longitude : ${controller.longitude}"),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 16.0),
                 child:

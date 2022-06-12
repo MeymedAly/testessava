@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:testessava/splash/splash_view.dart';
 import 'package:testessava/views/home/hom_view.dart';
 
+import '../bindings/addpdv_binding.dart';
 import '../views/addpdv/addpdv_view.dart';
 import '../views/modifpdv/modifpdv_view.dart';
 
@@ -27,6 +28,7 @@ class RoutesPages {
     GetPage(
       name: RoutesName.addPdvRoute,
       page: () => const AddPdvView(),
+      binding: AddPdvBinding(),
     ),
     GetPage(
       name: RoutesName.modifPdvRoute,

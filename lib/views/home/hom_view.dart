@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:testessava/ressources/route_manager.dart';
 
 import '../addpdv/addpdv_view.dart';
 
@@ -27,7 +28,7 @@ class _HomeViewState extends State<HomeView> {
         child: const Icon(Icons.add),
         onPressed: () {
           //controller.addNote();
-          Get.off(() => const AddPdvView());
+          Get.toNamed(RoutesName.addPdvRoute);
         },
       ),
     );

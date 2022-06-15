@@ -1,18 +1,74 @@
 import 'dart:developer';
+//import 'dart:math';
 
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:location/location.dart';
 import 'package:get/get.dart';
+import 'package:testessava/db/sqldb.dart';
+import 'package:testessava/models/pdv_model.dart';
 
 class AddPdvController extends GetxController {
+  final codeController = TextEditingController();
+  final logController = TextEditingController();
+  final laltController = TextEditingController();
   var latitude = "".obs;
   var longitude = "".obs;
+  List pdv = <Pdv>[].obs;
 
   @override
   void onInit() async {
     super.onInit();
+    getAllPdv();
     chekLocationServiceInDivice();
   }
+
+  bool isEmpty() {
+    if (pdv.length == 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  void getAllPdv() async {
+    pdv = await SqlDb.instance.selectData();
+    update();
+  }
+
+  void addPdvToDatabase() async {
+    String code = codeController.text;
+    double lon = double.parse(logController.text);
+    double lalt = double.parse(laltController.text);
+    Pdv pdv = Pdv(
+      code: code,
+      lon: lon,
+      lalt: lalt,
+    );
+    await SqlDb.instance.insertData(pdv);
+    codeController.text;
+    //logController.text;
+    //.text;
+    Get.back();
+  }
+
+  ///
+  ///
+  ///
+  ///
+  ///
+  ///
+  ///
+  ///
+  ///
+  ///
+  ///
+  ///
+  ///
+  ///
+  ///
+  ///
+  ///Location
 
   late bool _serviceEnabled;
   late PermissionStatus _permissionGranted;

@@ -1,19 +1,24 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:testessava/db/sqldb.dart';
 
 import '../../controllers/addpdv_controller.dart';
 
-class AddPdvView extends GetView<AddPdvController> {
-  const AddPdvView({Key? key}) : super(key: key);
+class AddPdvView extends StatelessWidget {
+  AddPdvView({Key? key}) : super(key: key);
   // final double latitude = 18.2677888;
   // final double longitude = 17.2677888;
+  //SqlDb sqlDb = SqlDb();
+  final AddPdvController controller = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Ajout un point de vente'),
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.only(top: 50),
         child: Form(
             child: Padding(
@@ -21,6 +26,7 @@ class AddPdvView extends GetView<AddPdvController> {
           child: Column(
             children: <Widget>[
               TextFormField(
+                controller: controller.codeController,
                 decoration: const InputDecoration(
                   labelText: 'Code',
                   border: OutlineInputBorder(),
@@ -29,28 +35,35 @@ class AddPdvView extends GetView<AddPdvController> {
               const SizedBox(
                 height: 40,
               ),
-              // Obx(
-              //   () => Text(
-              //     'sidi',
-              //     //controller.latitude.value,
-              //     style: const TextStyle(
-              //       color: Colors.white,
-              //       fontSize: 25,
-              //     ),
-              //   ),
-              // ),
+              TextFormField(
+                controller: controller.logController,
+                decoration: const InputDecoration(
+                  labelText: 'lalt',
+                  border: OutlineInputBorder(),
+                ),
+              ),
               const SizedBox(
                 height: 40,
               ),
-              Text("longitude : ${controller.longitude}"),
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 16.0),
-                child:
-                    ElevatedButton(onPressed: null, child: Text('Enregistrer')),
-              )
+              TextFormField(
+                controller: controller.laltController,
+                decoration: const InputDecoration(
+                  labelText: 'lalt',
+                  border: OutlineInputBorder(),
+                ),
+              ),
             ],
           ),
         )),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          //controller.addNoteToDatabase();
+          controller.addPdvToDatabase();
+        },
+        child: const Icon(
+          Icons.add,
+        ),
       ),
     );
   }

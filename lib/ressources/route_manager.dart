@@ -23,11 +23,11 @@ class RoutesPages {
     ),
     GetPage(
       name: RoutesName.homeRoute,
-      page: () => const HomeView(),
+      page: () => HomeView(),
     ),
     GetPage(
       name: RoutesName.addPdvRoute,
-      page: () => const AddPdvView(),
+      page: () => AddPdvView(),
       binding: AddPdvBinding(),
     ),
     GetPage(

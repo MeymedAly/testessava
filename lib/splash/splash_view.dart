@@ -27,7 +27,7 @@ class _SplashViewState extends State<SplashView>
   }
 
   void navigationPage() {
-    Get.offAll(() => const HomeView());
+    Get.offAll(() => HomeView());
   }
 
   @override

@@ -69,6 +69,7 @@ flutter:
     - assets/images/logosava.gif
     - assets/images/logoessava.gif
     - assets/images/note.json
+    - assets/images/powered_by2.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

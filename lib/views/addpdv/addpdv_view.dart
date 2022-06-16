@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:testessava/db/sqldb.dart';
 
 import '../../controllers/addpdv_controller.dart';
 
@@ -11,7 +10,7 @@ class AddPdvView extends StatelessWidget {
   // final double latitude = 18.2677888;
   // final double longitude = 17.2677888;
   //SqlDb sqlDb = SqlDb();
-  final AddPdvController controller = Get.find();
+  final AddPdvController controller = Get.put(AddPdvController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,19 +51,25 @@ class AddPdvView extends StatelessWidget {
                   border: OutlineInputBorder(),
                 ),
               ),
+              ElevatedButton(
+                onPressed: () {
+                  controller.addPdvToDatabase();
+                },
+                child: const Text('Enregistrer'),
+              )
             ],
           ),
         )),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          //controller.addNoteToDatabase();
-          controller.addPdvToDatabase();
-        },
-        child: const Icon(
-          Icons.add,
-        ),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     //controller.addNoteToDatabase();
+      //     controller.addPdvToDatabase();
+      //   },
+      //   child: const Icon(
+      //     Icons.add,
+      //   ),
+      // ),
     );
   }
 }

@@ -1,5 +1,3 @@
-// ignore_for_file: depend_on_referenced_packages
-
 import 'package:get/get.dart';
 import 'package:testessava/splash/splash_view.dart';
 import 'package:testessava/views/home/hom_view.dart';
@@ -19,11 +17,12 @@ class RoutesPages {
   static final pages = [
     GetPage(
       name: RoutesName.splashRoute,
-      page: () => const SplashView(),
+      page: () => SplashView(),
     ),
     GetPage(
       name: RoutesName.homeRoute,
       page: () => HomeView(),
+      //binding: HomeBinding(),
     ),
     GetPage(
       name: RoutesName.addPdvRoute,

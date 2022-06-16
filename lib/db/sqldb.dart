@@ -1,10 +1,11 @@
 import 'dart:developer';
 
+import 'package:get/get.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:path/path.dart';
+import 'package:path/path.dart' as P;
 import 'package:testessava/models/pdv_model.dart';
 
-class SqlDb {
+class SqlDb extends GetxService {
   static Database? _db;
   SqlDb._privateConstructor();
   static final SqlDb instance = SqlDb._privateConstructor();
@@ -21,7 +22,7 @@ class SqlDb {
 
   initialDb() async {
     String databasepath = await getDatabasesPath();
-    String path = join(databasepath, 'essava.db');
+    String path = P.join(databasepath, 'essava.db');
     Database mydb = await openDatabase(path,
         onCreate: _onCreate, version: 1, onUpgrade: _onUpgrade);
     return mydb;

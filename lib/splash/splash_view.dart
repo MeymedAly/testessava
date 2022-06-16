@@ -75,8 +75,9 @@ class _SplashViewState extends State<SplashView>
               Padding(
                   padding: const EdgeInsets.only(bottom: 30.0),
                   child: Image.asset(
-                    'assets/images/powered_by.png',
-                    height: 25.0,
+                    'assets/images/powered_by2.png',
+                    height: 115.0,
+                    width: 115.0,
                     fit: BoxFit.scaleDown,
                   ))
             ],

@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sqflite/sqflite.dart';
-import 'package:testessava/controllers/addpdv_controller.dart';
-import 'package:testessava/db/sqldb.dart';
-import 'package:testessava/ressources/route_manager.dart';
+import 'package:testessava/controllers/home_controller.dart';
 import 'package:lottie/lottie.dart';
 import 'package:testessava/views/addpdv/addpdv_view.dart';
 
@@ -11,24 +8,21 @@ class HomeView extends StatelessWidget {
   HomeView({Key? key}) : super(key: key);
   // SqlDb sqlDb = Sqflite();
   //AddPdvController controller = Get.put(AddPdvController());
-  //final Controller c = Get.put(Controller());
-  final AddPdvController controller = Get.put(AddPdvController());
+  final HomeController controller = Get.put(HomeController());
 
   Widget emptyPdv() {
-    return Container(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Lottie.asset('assets/images/note.json'),
-          const SizedBox(
-            height: 50,
-          ),
-          const Text(
-            "You don't have any Pdv",
-            style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-          ),
-        ],
-      ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Lottie.asset('assets/images/note.json'),
+        const SizedBox(
+          height: 50,
+        ),
+        const Text(
+          "You don't have any Pdv",
+          style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+        ),
+      ],
     );
   }
 
@@ -38,25 +32,24 @@ class HomeView extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Les points des ventes'),
       ),
-      body: Container(
-        child: Obx(() => ListView.builder(
-              itemCount: controller.pdv.length,
-              itemBuilder: (context, index) => Card(
-                key: ValueKey(controller.pdv[index].id),
-                //color: Color.fromARGB(255, 64, 255, 255),
-                elevation: 1,
-                margin: const EdgeInsets.symmetric(vertical: 10),
-                child: ListTile(
-                  leading: Text(
-                    controller.pdv[index].code.toString(),
-                    style: const TextStyle(fontSize: 24),
-                  ),
-                  title: Text(controller.pdv[index].lon.toString()),
-                  subtitle: Text(controller.pdv[index].lalt.toString()),
+      body: Obx(() => ListView.builder(
+            itemCount: controller.pdv.length,
+            itemBuilder: (context, index) => Card(
+              key: ValueKey(controller.pdv[index].id),
+              //color: Color.fromARGB(255, 64, 255, 255),
+              elevation: 1,
+              margin: const EdgeInsets.symmetric(vertical: 10),
+              child: ListTile(
+                leading: Text(
+                  controller.pdv[index].code.toString(),
+                  style: const TextStyle(fontSize: 24),
                 ),
+                // trailing:,
+                // title: Text(controller.pdv[index].lon.toString()),
+                // subtitle: Text(controller.pdv[index].lalt.toString()),
               ),
-            )),
-      ),
+            ),
+          )),
       // body: GetBuilder(
       //   builder: (_) => emptyPdv(),
       // ),

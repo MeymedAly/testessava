@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:testessava/controllers/home_controller.dart';
 import 'package:lottie/lottie.dart';
-import 'package:testessava/models/pdv_model.dart';
+
+import 'package:testessava/controllers/modifipdv_controller.dart';
+
 import 'package:testessava/views/addpdv/addpdv_view.dart';
 
-import '../../bindings/home_binding.dart';
 import '../cherche/cherche.dart';
 
 class HomeView extends StatelessWidget {
@@ -13,6 +14,7 @@ class HomeView extends StatelessWidget {
   // SqlDb sqlDb = Sqflite();
   //AddPdvController controller = Get.put(AddPdvController());
   final HomeController controller = Get.put(HomeController());
+  final ModifiPdvController modificontroller = Get.put(ModifiPdvController());
 
   Widget emptyPdv() {
     return Column(
@@ -52,10 +54,39 @@ class HomeView extends StatelessWidget {
               elevation: 1,
               margin: const EdgeInsets.symmetric(vertical: 10),
               child: ListTile(
+                trailing: Wrap(children: <Widget>[
+                  IconButton(
+                    icon: Icon(Icons.edit, color: Colors.green),
+                    onPressed: () {
+                      modificontroller.edit(controller.pdv[index].id!);
+                    },
+                  ),
+                  IconButton(
+                      icon: Icon(
+                        Icons.delete,
+                        color: Colors.red.shade400,
+                      ),
+                      onPressed: () {
+                        Get.defaultDialog(
+                            title: 'supprimer',
+                            middleText:
+                                'est c que vou pouvais supprimer  ${controller.pdv[index].code}?',
+                            textCancel: 'annuler',
+                            onConfirm: () {
+                              controller.delete(controller.pdv[index].id!);
+                              if (controller.loading.value == true) {
+                                Get.dialog(
+                                  Center(child: CircularProgressIndicator()),
+                                );
+                              }
+                            });
+                      }),
+                ]),
                 leading: Text(
                   controller.pdv[index].code.toString(),
                   style: const TextStyle(fontSize: 24),
                 ),
+
                 // trailing:,
                 // title: Text(controller.pdv[index].lon.toString()),
                 // subtitle: Text(controller.pdv[index].lalt.toString()),

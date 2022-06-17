@@ -35,9 +35,9 @@ class AddPdvView extends StatelessWidget {
                 height: 40,
               ),
               TextFormField(
-                controller: controller.logController,
+                controller: controller.lonController,
                 decoration: const InputDecoration(
-                  labelText: 'lalt',
+                  labelText: 'lon',
                   border: OutlineInputBorder(),
                 ),
               ),

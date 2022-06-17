@@ -12,9 +12,10 @@ class AddPdvController extends GetxController {
   final codeController = TextEditingController();
   final logController = TextEditingController();
   final laltController = TextEditingController();
-  var latitude = "".obs;
-  var longitude = "".obs;
+  //late final lalt = "".obs;
+  var lon;
   List pdv = <Pdv>[].obs;
+  late LocationData _location;
 
   @override
   void onInit() async {
@@ -72,8 +73,9 @@ class AddPdvController extends GetxController {
 
   late bool _serviceEnabled;
   late PermissionStatus _permissionGranted;
-  late LocationData _location;
+
   void chekLocationServiceInDivice() async {
+    var lonn = lon;
     Location location = Location();
     _serviceEnabled = await location.serviceEnabled();
     if (_serviceEnabled) {
@@ -86,8 +88,14 @@ class AddPdvController extends GetxController {
         _location = await location.getLocation();
         // longitude.value = _location.longitude as String;
         // latitude.value = _location.latitude as String;
-        log("${_location.longitude} ${_location.latitude}");
+        // log("${_location.longitude} ${_location.latitude}");
+        var lon = _location.longitude;
+        var lalt = _location.longitude;
+        lonn = _location.longitude;
+        print(lon);
+        print(lalt);
       } else {
+        //print(lalt);
         _permissionGranted = await location.requestPermission();
         if (_permissionGranted == PermissionStatus.granted) {
           log('Start trainking');

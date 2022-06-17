@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:testessava/controllers/home_controller.dart';
 import 'package:lottie/lottie.dart';
+import 'package:testessava/models/pdv_model.dart';
 import 'package:testessava/views/addpdv/addpdv_view.dart';
+
+import '../../bindings/home_binding.dart';
+import '../cherche/cherche.dart';
 
 class HomeView extends StatelessWidget {
   HomeView({Key? key}) : super(key: key);
@@ -30,7 +34,15 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Les points des ventes'),
+        title: const Text('Liste des points des vents'),
+        actions: [
+          IconButton(
+              onPressed: () {
+                //cherch(context: context, GetDelegate());
+                showSearch(context: context, delegate: SearchDelegat());
+              },
+              icon: const Icon(Icons.search))
+        ],
       ),
       body: Obx(() => ListView.builder(
             itemCount: controller.pdv.length,

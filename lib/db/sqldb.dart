@@ -37,8 +37,8 @@ class SqlDb extends GetxService {
     CREATE TABLE $_tableName (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       code TEXT NOT NULL,
-      lon REAL NOT NULL,
-      lalt REAL NOT NULL
+      lon TEXT NOT NULL,
+      lalt TEXT NOT NULL
 
     )
     ''');
@@ -55,8 +55,8 @@ class SqlDb extends GetxService {
       return Pdv(
         id: maps[index]["id"],
         code: maps[index]["code"],
-        lon: maps[index]["lon"],
-        lalt: maps[index]["lalt"],
+        lon: maps[index]["lon"].toString(),
+        lalt: maps[index]["lalt"].toString(),
       );
     });
   }
@@ -70,15 +70,21 @@ class SqlDb extends GetxService {
 
 // UPDATE
 
-  Future<int> updateData(Pdv pdv) async {
-    Database? mydb = await instance.db;
-    //int response = await mydb!.rawUpdate(sql);
-    return await mydb!.update(
-      _tableName,
-      pdv.toMap(),
-      where: "id = ?",
-      whereArgs: [pdv.id],
-    );
+  Future<Pdv> updateData(Pdv pdv) async {
+     Database? mydb = await instance.db;
+    // //int response = await mydb!.rawUpdate(sql);
+    // return await mydb!.update(
+    //   _tableName,
+    //   pdv.toMap(),
+    //   where: "id = ?",
+    //   whereArgs: [pdv.id],
+    // );
+    final id = await mydb!.rawUpdate(
+        'UPDATE pdv SET code = ?, lon = ?, lalt = ? WHERE id = ?',
+        [pdv.code, pdv.lon, pdv.lalt,pdv.id]);
+
+      print(id);
+    return pdv.copy(id : id);
   }
 
 // DELETE

@@ -31,7 +31,7 @@ class RoutesPages {
     ),
     GetPage(
       name: RoutesName.modifPdvRoute,
-      page: () => const ModifierPdvView(),
+      page: () =>  ModifierPdvView(),
     )
   ];
 }

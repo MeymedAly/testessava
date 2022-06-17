@@ -10,7 +10,7 @@ import 'package:testessava/models/pdv_model.dart';
 
 class AddPdvController extends GetxController {
   final codeController = TextEditingController();
-  final logController = TextEditingController();
+  final lonController = TextEditingController();
   final laltController = TextEditingController();
   var latitude = "".obs;
   var longitude = "".obs;
@@ -38,8 +38,8 @@ class AddPdvController extends GetxController {
 
   void addPdvToDatabase() async {
     String code = codeController.text;
-    double lon = double.parse(logController.text);
-    double lalt = double.parse(laltController.text);
+    String lon = lonController.text;
+    String lalt = laltController.text;
     Pdv pdv = Pdv(
       code: code,
       lon: lon,

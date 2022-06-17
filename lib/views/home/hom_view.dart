@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:testessava/controllers/home_controller.dart';
 import 'package:lottie/lottie.dart';
-import 'package:testessava/controllers/modifipdv_controller.dart';
+ import 'package:testessava/controllers/modifipdv_controller.dart';
 import 'package:testessava/views/addpdv/addpdv_view.dart';
-
+import 'package:testessava/views/modifpdv/modifpdv_view.dart';
 class HomeView extends StatelessWidget {
   HomeView({Key? key}) : super(key: key);
   // SqlDb sqlDb = Sqflite();
@@ -42,12 +42,14 @@ class HomeView extends StatelessWidget {
               //color: Color.fromARGB(255, 64, 255, 255),
               elevation: 1,
               margin: const EdgeInsets.symmetric(vertical: 10),
+              
               child: ListTile(
                 trailing: Wrap(children: <Widget>[
               IconButton(
                 icon: Icon(Icons.edit,color: Colors.green),
                 onPressed: () {
-                  modificontroller.edit(controller.pdv[index].id!);
+                  // modificontroller.edit(controller.pdv[index].id);
+                  Get.to(() => ModifierPdvView());
                 },
               ),
               IconButton(
@@ -60,7 +62,7 @@ class HomeView extends StatelessWidget {
                             'est c que vou pouvais supprimer  ${controller.pdv[index].code}?',
                         textCancel: 'annuler',
                         onConfirm: () {
-                          controller.delete(controller.pdv[index].id!);
+                          controller.delete(controller.pdv[index].id);
                           if (controller.loading.value == true) {
                             Get.dialog(
                               Center(child: CircularProgressIndicator()),

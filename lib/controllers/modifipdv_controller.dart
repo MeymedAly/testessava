@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:testessava/db/sqldb.dart';
 import 'package:testessava/models/pdv_model.dart';
 
-
 class ModifiPdvController extends GetxController {
   final codeController = TextEditingController();
   final lonController = TextEditingController();
@@ -17,15 +16,14 @@ class ModifiPdvController extends GetxController {
   RxBool loading = false.obs;
   @override
   void edit(int id) async {
-
-   final code =codeController.text;
+    final code = codeController.text;
     final lon = lonController.text;
-      final lalt = laltController.text;
-    Pdv pdv = Pdv(id: id ,code: code,lon:lon , lalt: lalt   );
-   await SqlDb.instance.updateData(pdv);
-     
+    final lalt = laltController.text;
+    Pdv pdv = Pdv(id: id, code: code, lon: lon, lalt: lalt);
+    await SqlDb.instance.updateData(pdv);
   }
-   editMode() {
+
+  editMode() {
     contentFocusNode.unfocus();
     if (formKey.currentState!.validate()) {
       loading(true);
@@ -36,11 +34,11 @@ class ModifiPdvController extends GetxController {
       // }
     }
   }
-   validcode(String? value) {
+
+  validcode(String? value) {
     if (value == null || value.isEmpty) {
       return 'erreur.';
     }
     return null;
   }
-
- }
+}

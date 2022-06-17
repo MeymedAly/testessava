@@ -5,6 +5,8 @@ import 'package:lottie/lottie.dart';
  import 'package:testessava/controllers/modifipdv_controller.dart';
 import 'package:testessava/views/addpdv/addpdv_view.dart';
 import 'package:testessava/views/modifpdv/modifpdv_view.dart';
+
+import '../cherche/cherche.dart';
 class HomeView extends StatelessWidget {
   HomeView({Key? key}) : super(key: key);
   // SqlDb sqlDb = Sqflite();
@@ -33,6 +35,14 @@ class HomeView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Les points des ventes'),
+        actions: [
+          IconButton(
+              onPressed: () {
+                //cherch(context: context, GetDelegate());
+                showSearch(context: context, delegate: SearchDelegat());
+              },
+              icon: const Icon(Icons.search))
+        ],
       ),
       body: Obx(() => ListView.builder(
             itemCount: controller.pdv.length,
